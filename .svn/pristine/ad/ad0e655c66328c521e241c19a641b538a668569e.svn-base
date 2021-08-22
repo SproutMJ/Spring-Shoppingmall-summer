@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.ProductDao">
+  <resultMap type="com.newlecture.web.entity.Product" id="productMap">
+  	<id property="id" column="id"/>
+  	<result property="categoryId" column="category_id"/>
+  	<result property="registerDate" column="register_date"/>
+  </resultMap>
+  <select id="retrieveProductById" resultType="com.newlecture.web.entity.Product" resultMap="productMap">
+    select * from Product where id = #{id}
+  </select>
+</mapper>

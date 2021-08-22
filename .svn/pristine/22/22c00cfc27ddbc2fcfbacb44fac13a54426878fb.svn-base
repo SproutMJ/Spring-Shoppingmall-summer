@@ -1,0 +1,9 @@
+package com.newlecture.web.service;
+
+import com.newlecture.web.entity.Category;
+
+public interface CategoryService {
+	
+	void registerCategory(Category category, String realPath);
+	
+}

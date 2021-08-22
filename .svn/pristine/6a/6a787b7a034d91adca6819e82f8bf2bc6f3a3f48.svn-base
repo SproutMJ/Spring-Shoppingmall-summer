@@ -1,0 +1,14 @@
+package com.newlecture.web.dao;
+
+import com.newlecture.web.entity.Orders;
+
+public interface OrdersDao {
+
+	public long createOrders(Orders orders);
+	
+	public Orders retrieveOrdersById(long id);
+	
+	public long updateOrders(Orders orders);
+	
+	public long deleteOrdersById(long id);
+}

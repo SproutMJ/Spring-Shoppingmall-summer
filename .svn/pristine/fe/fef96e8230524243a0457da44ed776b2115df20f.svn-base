@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.OrderedProductDao">
+	<resultMap type="com.newlecture.web.entity.OrderedProduct"
+		id="OrderedProductMap">
+		<id property="id" column="id" />
+		<result property="orderId" column="order_id" />
+		<result property="productId" column="product_id" />
+	</resultMap>
+	
+	<resultMap type="com.newlecture.web.dto.OrderedProductDto" id="OrderedProductDtoMap">
+		<id property="id" column="id" />
+		<result property="orderId" column="order_id" />
+		<result property="productId" column="product_id" />
+	</resultMap>
+	
+  <insert id="createOrderedProduct" parameterType="com.newlecture.web.entity.OrderedProduct">
+  	insert into ordered_product(order_id, product_id, count) 
+  	values (#{orderId}, #{productId}, #{count})
+  </insert>
+  
+  <select id="retrieveOrderedProductByOrderList" resultMap="OrderedProductDtoMap">
+    select t2.id id, t2.order_id order_id, t2.product_id product_id, t2.count count, t3.name name, t3.description description, t3.price price 
+	from orders t1 inner join ordered_product t2 on (t1.id = t2.order_id)
+	inner join product t3 on (t2.product_id = t3.id)
+	where t1.id in
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+		#{item.id}
+	</foreach>
+  </select>
+</mapper>

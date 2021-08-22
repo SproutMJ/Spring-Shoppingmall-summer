@@ -1,0 +1,8 @@
+package com.newlecture.web.service;
+
+import com.newlecture.web.entity.Users;
+
+public interface UsersService {
+	public int signUp(Users user);
+	public int logIn(String id, String password);
+}

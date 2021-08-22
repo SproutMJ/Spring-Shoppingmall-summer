@@ -1,0 +1,18 @@
+package com.newlecture.web.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.newlecture.web.dao.OrderedProductDao;
+import com.newlecture.web.entity.OrderedProduct;
+@Service
+public class OrderedProductImpl implements OrderedProductService {
+	@Autowired
+	private OrderedProductDao orderedProductDao;
+	@Override
+	public long createOrderedProduct(OrderedProduct orderedProduct) {
+		orderedProductDao.createOrderedProduct(orderedProduct);
+		return 0;
+	}
+
+}

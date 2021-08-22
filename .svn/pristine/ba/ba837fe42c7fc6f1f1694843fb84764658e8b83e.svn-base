@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.ProductImageFileDao">
+  <resultMap type="com.newlecture.web.entity.ProductImageFile" id="ProductImageFileMap">
+  	<id property="id" column="id"/>
+  	<result property="productId" column="product_id"/>
+  	<result property="originName" column="origin_name"/>
+  	<result property="remoteName" column="remote_name"/>
+  	<result property="fileSize" column="file_size"/>
+  	<result property="registerDate" column="register_date"/>
+  </resultMap>
+  <insert id="createProductImageFile" parameterType="com.newlecture.web.entity.ProductImageFile">
+  	insert into Product_Image_File(product_id, origin_name, remote_name, file_size, register_date)
+  	values (#{productId}, #{originName}, #{remoteName}, #{fileSize}, #{registerDate})
+  </insert>
+</mapper>

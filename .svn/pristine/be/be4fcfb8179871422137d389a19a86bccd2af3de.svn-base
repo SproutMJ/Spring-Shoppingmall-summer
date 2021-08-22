@@ -1,0 +1,13 @@
+package com.newlecture.web.dao;
+
+import com.newlecture.web.entity.Category;
+
+public interface CategoryDao {
+	public long createCategory(Category category);
+	
+	public Category retrieveCategoryById(long id);
+	
+	public long updateCategory(Category category);
+	
+	public long deleteCategoryById(long id);
+}

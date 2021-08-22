@@ -1,0 +1,59 @@
+package com.newlecture.web.controller.customer;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/")
+public class HomeController {
+	
+	// '/' 
+	// '.' 
+	
+	@RequestMapping("")
+	public String index() {
+		
+		return "customer.index";
+	}
+	
+	@RequestMapping("/list")
+	public String list() {
+		
+		return "customer.list";
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		return "customer.detail";
+	}
+	
+	@RequestMapping("/cart")
+	public String cart() {
+		
+		return "customer.cart";
+	}
+	
+	@RequestMapping("/checkout")
+	public String checkOut() {
+		
+		return "customer.checkout";
+	}
+	
+	@RequestMapping("/contact")
+	public String contact() {
+		
+		return "customer.contact";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		
+		return "customer/login";
+	}
+	
+	@RequestMapping("/signup")
+	public String signUp() {
+		
+		return "customer/signup";
+	}
+}

@@ -1,0 +1,8 @@
+package com.newlecture.web.service;
+
+import com.newlecture.web.entity.Cart;
+
+public interface CartService {
+
+	public void registerCartItem(Cart cart);
+}

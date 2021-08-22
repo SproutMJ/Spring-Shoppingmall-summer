@@ -1,0 +1,48 @@
+package com.newlecture.web.controller.admin;
+
+import java.io.File;
+import java.net.URL;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.newlecture.web.entity.Category;
+import com.newlecture.web.service.CategoryService;
+
+@Controller("adminHomeController")
+@RequestMapping("/admin")
+public class HomeController {
+
+	@Autowired
+	private CategoryService categoryService;
+	
+	@RequestMapping("")
+	public String index(HttpServletRequest request) {
+		request.setAttribute("categoryList", categoryService.getCategoryList());
+		return "admin/index";
+	}
+	
+	@RequestMapping("/registerCategory")
+	public String registerCategory(HttpServletRequest request) {
+		
+		String name = request.getParameter("name");
+		String realPath = new File("src/main/resources/static/img/products").getAbsolutePath();
+		realPath += File.separator + name;
+		
+		categoryService.registerCategory(new Category(0, name), realPath);
+		
+		return "redirect:/admin";
+	}
+	
+	@RequestMapping("/registerProduct")
+	public String registerProduct(HttpServletRequest request) {
+		
+		
+		
+		return "redirect:/admin";
+	}
+	
+}

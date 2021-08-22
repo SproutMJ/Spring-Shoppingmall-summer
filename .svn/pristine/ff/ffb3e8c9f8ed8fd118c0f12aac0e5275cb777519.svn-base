@@ -1,0 +1,32 @@
+package com.newlecture.web.dao;
+
+import java.time.Instant;
+import java.util.Date;
+
+import org.junit.jupiter.api.Test;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.newlecture.web.entity.Product;
+
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@MybatisTest
+@Transactional
+class ProductDaoTest {
+
+	@Autowired
+	private ProductDao productDao;
+
+	@Test
+	@Rollback(false)
+	void test() {
+
+		productDao.createProduct(new Product(0, 0, "인터페이스로 구현", 0, 0, "daoImpl", Date.from(Instant.now())));
+
+	}
+
+}

@@ -1,0 +1,32 @@
+package com.newlecture.web.controller.admin;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.newlecture.web.entity.Category;
+import com.newlecture.web.service.CategoryService;
+
+@Controller("adminHomeController")
+@RequestMapping("/admin")
+public class HomeController {
+
+	@Autowired
+	private CategoryService categoryService;
+	
+	@RequestMapping("")
+	public String index() {
+		return "admin/index";
+	}
+	
+	@RequestMapping("/registerCategory")
+	public String registerCategory(HttpServletRequest request) {
+		
+		String name = request.getParameter("name");
+		categoryService.registerCategory(new Category(0, name));
+		
+		return "redirect:/admin";
+	}
+}

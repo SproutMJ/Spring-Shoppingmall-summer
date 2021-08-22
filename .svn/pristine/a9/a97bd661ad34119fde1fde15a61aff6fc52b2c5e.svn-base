@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.UsersDao">
+  <resultMap type="com.newlecture.web.entity.Users" id="UsersMap">
+  	<id property="id" column="id"/>
+  	<result property="userId" column="user_id"/>
+  	<result property="phoneNumber" column="phone_number"/>
+  	<result property="userRole" column="user_role"/>
+  	<result property="registerDate" column="register_date"/>
+  </resultMap>
+	<insert id="createUsers" parameterType="com.newlecture.web.entity.Users">
+		insert into Users(user_id, password, name, phone_number, user_role, register_date, addr)
+		values(#{userId}, #{password}, #{name}, #{phoneNumber}, #{userRole}, #{registerDate}, #{addr})
+	</insert>
+</mapper>

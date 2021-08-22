@@ -1,0 +1,8 @@
+package com.newlecture.web.service;
+
+import com.newlecture.web.entity.Product;
+
+public interface ProductService {
+	public long registerProduct(Product product);
+	public long retrieveIdByName(String name);
+}

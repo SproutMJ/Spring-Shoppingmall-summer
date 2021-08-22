@@ -1,0 +1,9 @@
+package com.newlecture.web.service;
+
+import com.newlecture.web.entity.Orders;
+
+public interface OrdersService {
+	public long createOrders(Orders orders);
+	
+	public long retrieveLastIdByUserId(long id);
+}

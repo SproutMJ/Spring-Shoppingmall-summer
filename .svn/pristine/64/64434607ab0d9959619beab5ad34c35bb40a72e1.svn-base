@@ -1,0 +1,32 @@
+package com.newlecture.web.dao.mybatis;
+
+import com.newlecture.web.dao.UsersDao;
+import com.newlecture.web.entity.Users;
+
+public class MybatisUsersDao implements UsersDao {
+
+	@Override
+	public long createUsers(Users users) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Users retrieveUsersById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long updateUsers(Users users) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public long deleteUsersById(long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

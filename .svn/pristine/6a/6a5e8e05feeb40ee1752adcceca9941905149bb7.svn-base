@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.OrdersDao">
+  <resultMap type="com.newlecture.web.entity.Orders" id="OrdersMap">
+  	<id property="id" column="id"/>
+  	<result property="registerDate" column="register_date"/>
+  	<result property="receiverName" column="receiver_name"/>
+  	<result property="receiverPhone" column="receiver_phone"/>
+  	<result property="userId" column="user_id"/>
+  	<result property="userRole" column="user_role"/>
+  </resultMap>
+	<insert id="createOrders" parameterType="com.newlecture.web.entity.Orders">
+		insert into orders(register_date, receiver_name, receiver_phone, addr, user_id, user_role)
+		values(#{registerDate},#{receiverName}, #{receiverPhone}, #{addr}, #{userId}, #{userRole})
+	</insert>
+	<select id="retrieveLastIdByUserId" resultType="java.lang.Long">
+		select max(o.id) from orders o 
+    	join users u on o.user_id = u.id
+    	where u.id = #{id}
+	</select>
+</mapper>

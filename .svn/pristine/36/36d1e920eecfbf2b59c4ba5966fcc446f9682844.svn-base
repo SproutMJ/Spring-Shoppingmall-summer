@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.ProductDao">
+  <resultMap type="com.newlecture.web.entity.Product" id="productMap">
+  	<id property="id" column="id"/>
+  	<result property="categoryId" column="category_id"/>
+  	<result property="registerDate" column="register_date"/>
+  </resultMap>
+  
+  <resultMap type="com.newlecture.web.dto.ProductItem" id="productItemMap">
+  	<id property="id" column="id"/>
+  	<result property="categoryId" column="category_id"/>
+  	<result property="registerDate" column="register_date"/>
+  	<result property="remoteName" column="remote_name"/>
+  </resultMap>
+  
+  <insert id="createProduct" parameterType="com.newlecture.web.entity.Product">
+  	insert into product(category_id, name, price, stock, description, register_date) 
+  	values (#{categoryId}, #{name}, #{price}, #{stock}, #{description}, #{registerDate})
+  </insert>
+ 
+  <select id="retrieveProductById" resultType="com.newlecture.web.entity.Product" resultMap="productMap">
+    select * from Product where id = #{id}
+  </select>
+  
+  <update id="updateProduct" parameterType="com.newlecture.web.entity.Product">
+  	update product
+  	set
+  		category_id = #{categoryId}, 
+  		name = #{name}, 
+  		price = #{price}, 
+  		stock = #{stock}, 
+  		description = #{description}, 
+  		register_date = #{registerDate}
+  	where id = #{id}
+  </update>
+  
+  <delete id="deleteProductById">
+  	delete from product where id = #{id}
+  </delete>
+  
+  <select id="retrieveIdByName" resultType="java.lang.Long">
+  	select id from product where name = #{name}
+  </select>
+  
+  <select id="retrieveCurId" resultType="java.lang.Long">
+	<![CDATA[
+	select "TEAM_MEMBER"."ISEQ$$_73980".currval
+	from product
+	where rownum <=1]]>
+  </select>
+  
+  <select id="retrieveNextId" resultType="java.lang.Long">
+	<![CDATA[
+	select "TEAM_MEMBER"."ISEQ$$_73980".nextval
+	from product
+	where rownum <=1]]>
+  </select>
+  
+  <select id="retrieveProductItemListByCategoryId" resultMap="productItemMap">
+  	select *
+  	from (select p1.*, p2.remote_name
+  	from product p1
+  	join product_image_file p2 on (p1.id = p2.product_id))
+  	where category_id = #{categoryId}
+  	order by register_date desc
+  </select>
+  
+  <select id="retrieveProductItemAll" resultType="com.newlecture.web.dto.ProductItem" resultMap="productItemMap">
+  	select *
+  	from (select p1.*, p2.remote_name
+  	from product p1
+  	join product_image_file p2 on (p1.id = p2.product_id))
+  	order by id desc
+  </select>
+  
+  <select id="retrieveProductItemListRecentlyOneInCategory" resultType="com.newlecture.web.dto.ProductItem" resultMap="productItemMap">
+  	select p.*, img.remote_name from product p
+    join product_image_file img on p.id = img.product_id
+    where p.id in (select max(id) from product group by category_id)
+  </select>
+  
+  <select id="retrieveProductItemById" resultMap="productItemMap">
+    select *
+  	from (select p1.*, p2.remote_name
+  	from product p1
+  	join product_image_file p2 on (p1.id = p2.product_id))
+  	where id = #{productId}
+  	order by register_date desc
+  </select>
+</mapper>

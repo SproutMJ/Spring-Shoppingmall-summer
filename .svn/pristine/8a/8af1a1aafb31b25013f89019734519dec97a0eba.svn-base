@@ -1,0 +1,21 @@
+package com.newlecture.web.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+
+import com.newlecture.web.entity.Product;
+
+@Mapper
+public interface ProductDao {
+	
+	public boolean createProductById();
+	
+	public Product retrieveProductById(int id);
+	
+	public boolean updateProductById();
+	
+	public boolean deleteProductById();
+	
+}

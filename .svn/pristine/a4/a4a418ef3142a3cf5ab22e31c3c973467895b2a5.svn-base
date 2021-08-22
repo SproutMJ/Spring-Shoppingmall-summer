@@ -1,0 +1,43 @@
+package com.newlecture.web.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.newlecture.web.dao.CategoryDao;
+import com.newlecture.web.dao.ProductDao;
+import com.newlecture.web.entity.Product;
+
+@Service
+public class ProductServiceImpl implements ProductService{
+
+	@Autowired
+	private ProductDao productDao;
+	
+	@Autowired
+	private CategoryDao categoryDao;
+	
+	@Override
+	public long registerProduct(Product product) {
+		productDao.createProduct(product);
+		return 0;
+	}
+
+	@Override
+	public long retrieveIdByName(String name) {
+		return productDao.retrieveIdByName(name);
+	}
+
+	@Override
+	public long retrieveCurId() {
+		return productDao.retrieveCurId();
+	}
+
+	@Override
+	public List<Product> retrieveProductListByCategoryId(String categoryId) {
+		// TODO Auto-generated method stub
+		return productDao.retrieveProductListByCategoryId(categoryId);
+	}
+
+}

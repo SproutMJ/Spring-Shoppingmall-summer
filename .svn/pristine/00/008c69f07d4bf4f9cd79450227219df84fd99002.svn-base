@@ -1,0 +1,32 @@
+package com.newlecture.web.dao.mybatis;
+
+import com.newlecture.web.dao.CartDao;
+import com.newlecture.web.entity.Cart;
+
+public class MybatisCartDao implements CartDao {
+
+	@Override
+	public long createCart(Cart cart) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Cart retrieveCartById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long updateCart(Cart cart) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public long deleteCartById(long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

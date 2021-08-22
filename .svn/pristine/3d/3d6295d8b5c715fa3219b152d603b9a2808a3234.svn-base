@@ -1,0 +1,40 @@
+package com.newlecture.web.dao.mybatis;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.newlecture.web.dao.CategoryDao;
+import com.newlecture.web.dao.ProductDao;
+import com.newlecture.web.dto.ProductItem;
+
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@SpringBootTest
+@Transactional
+class MybatisProductDaoTest {
+	
+	@Autowired
+	private ProductDao productDao;
+	
+	@Autowired
+	private CategoryDao categoryDao;
+	
+	@Test
+	@Rollback(false)
+	void test() {
+		List<ProductItem> productItemList = productDao.retrieveProductItemBySearch("치");
+		for( ProductItem p : productItemList)
+			System.out.println(p);
+	}
+
+}

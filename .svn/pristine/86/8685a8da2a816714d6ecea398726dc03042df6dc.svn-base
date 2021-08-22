@@ -1,0 +1,25 @@
+package com.newlecture.web.dao;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+
+import com.newlecture.web.entity.Product;
+
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@MybatisTest
+class ProductDaoTest {
+
+	@Autowired
+	private ProductDao productDao;
+	@Test
+	void test() {
+		Product p = productDao.retrieveProductById(1);
+		System.out.println(p);
+	}
+
+}

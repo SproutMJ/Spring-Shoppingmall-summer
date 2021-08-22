@@ -1,0 +1,45 @@
+package com.newlecture.web.dao.mybatis;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.newlecture.web.dao.ProductDao;
+import com.newlecture.web.entity.Product;
+
+@Repository
+public class MybatisProductDao implements ProductDao {
+
+	private ProductDao productDao;
+	
+	@Autowired
+	public MybatisProductDao(SqlSession sqlSession) {
+		productDao = sqlSession.getMapper(ProductDao.class);
+	}
+	
+	@Override
+	public long createProduct(Product product) {
+		// TODO Auto-generated method stub
+		 
+		productDao.createProduct(product);
+		return 0;
+	}
+
+	@Override
+	public Product retrieveProductById(long id) {
+		return productDao.retrieveProductById(id);
+	}
+
+	@Override
+	public long updateProduct(Product product) {
+		productDao.updateProduct(product);
+		return 0;
+	}
+
+	@Override
+	public long deleteProductById(long id) {
+		productDao.deleteProductById(id);
+		return 0;
+	}
+
+}

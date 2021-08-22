@@ -1,0 +1,7 @@
+package com.newlecture.web.service;
+
+import com.newlecture.web.entity.OrderedProduct;
+
+public interface OrderedProductService {
+	public long createOrderedProduct(OrderedProduct orderedProduct);
+}

@@ -1,0 +1,14 @@
+package com.newlecture.web.dao;
+
+import com.newlecture.web.entity.Cart;
+
+
+public interface CartDao {
+	public long createCart(Cart cart);
+	
+	public Cart retrieveCartById(long id);
+	
+	public long updateCart(Cart cart);
+	
+	public long deleteCartById(long id);
+}

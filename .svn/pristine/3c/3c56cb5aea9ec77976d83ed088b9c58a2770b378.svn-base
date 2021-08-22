@@ -1,0 +1,32 @@
+package com.newlecture.web.dao.mybatis;
+
+import com.newlecture.web.dao.OrdersDao;
+import com.newlecture.web.entity.Orders;
+
+public class MybatisOrdersDao implements OrdersDao {
+
+	@Override
+	public long createOrders(Orders orders) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Orders retrieveOrdersById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long updateOrders(Orders orders) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public long deleteOrdersById(long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

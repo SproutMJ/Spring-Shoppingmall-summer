@@ -1,0 +1,24 @@
+package com.newlecture.web.dao;
+
+import java.util.Date;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.newlecture.web.entity.Product;
+
+@Mapper
+public interface ProductDao {
+	
+	public boolean createProductByProperty(long categoryId, String name, long price,
+			long stock, String description, Date registerDate);
+	
+	public boolean createProductByObject(Product product);
+	
+	public Product retrieveProductById(int id);
+	
+	public boolean updateProductById();
+	
+	public boolean deleteProductById();
+	
+}

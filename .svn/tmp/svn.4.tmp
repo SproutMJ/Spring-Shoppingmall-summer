@@ -1,0 +1,20 @@
+package com.newlecture.web.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.newlecture.web.dao.CategoryDao;
+import com.newlecture.web.entity.Category;
+
+@Service
+public class CategoryServiceImpl implements CategoryService{
+
+	@Autowired
+	private CategoryDao categoryDao;
+	
+	@Override
+	public void registerCategory(Category category) {
+		categoryDao.createCategory(category);
+	}
+	
+}

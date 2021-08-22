@@ -1,0 +1,94 @@
+package com.newlecture.web.controller.customer;
+
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.newlecture.web.entity.Users;
+import com.newlecture.web.service.UsersService;
+
+@Controller
+@RequestMapping("/")
+public class HomeController {
+	
+	// '/' -> WEB-INF JSP ViewResolver 2순위
+	// '.' -> TilesViewResolver 1순위
+	
+	@Autowired
+	private UsersService usersService;
+	
+	@RequestMapping("")
+	public String index() {
+		
+		return "customer.index";
+	}
+	
+	@RequestMapping("/list")
+	public String list() {
+		
+		return "customer.list";
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		return "customer.detail";
+	}
+	
+	@RequestMapping("/cart")
+	public String cart() {
+		
+		return "customer.cart";
+	}
+	
+	@RequestMapping("/checkout")
+	public String checkOut() {
+		
+		return "customer.checkout";
+	}
+	
+	@RequestMapping("/contact")
+	public String contact() {
+		
+		return "customer.contact";
+	}
+	
+	@RequestMapping("/orderlist")
+	public String orderList() {
+		return "customer.orderlist";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		
+		return "customer/login";
+	}
+	
+	@RequestMapping("/signup")
+	public String signUp() {
+		
+		return "customer/signup";
+	}
+	
+	@RequestMapping("/customer/signup")
+	public String signUpDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		String name = request.getParameter("name");
+		String addr = request.getParameter("addr");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String crePassword = request.getParameter("crePassword");
+		String rePassword = request.getParameter("rePassword");
+		usersService.signUp(new Users(0, name, rePassword, name, phone, 0, Date.from(Instant.now()), addr));
+		
+		
+		return "redirect:/"; // customer/signup.do url이 유지되면 안되므로 redirect 처리함
+	}
+}

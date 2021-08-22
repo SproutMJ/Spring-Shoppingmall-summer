@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.CartDao">
+	<resultMap type="com.newlecture.web.entity.Cart" id="CartMap">
+		<id property="id" column="id" />
+		<result property="productId" column="product_id" />
+		<result property="userId" column="user_id" />
+	</resultMap>
+
+	<insert id="createCart"
+		parameterType="com.newlecture.web.entity.Cart">
+		insert into cart(product_id, user_id, count)
+		values (#{productId}, #{userId}, #{count})
+	</insert>
+	
+	<select id="retrieveCartbyId" resultMap="CartMap">
+		select *
+		from cart
+		where cart_id = #{id}
+	</select>
+	
+	<select id="retrieveCartListByUserId" resultMap="CartMap">
+		select *
+		from cart
+		where user_id = #{userId}
+	</select>
+	
+	<delete id="deleteCartByCartId">
+		delete from cart where id = #{cartId}
+	</delete>
+	
+	<delete id="deleteCartAll">
+		delete from cart
+	</delete>
+	
+	<delete id="deleteCartAllByUserId" parameterType="java.lang.Long">
+		delete from cart where user_id=#{id}
+	</delete>
+
+</mapper>
